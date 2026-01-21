@@ -1,4 +1,3 @@
-// breath-steps.js
 let _breathEls = []
 let _isRunning = false
 

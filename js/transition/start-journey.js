@@ -4,7 +4,7 @@ export function bindStartJourneyTransition () {
   const hasGSAP = typeof window !== 'undefined' && !!window.gsap
   if (!hasGSAP) return
 
-  // ✅ use local alias so we can write gsap.xxx cleanly
+
   const gsap = window.gsap
 
   const dom = {
