@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Coffee Product Lifecycle</title>
+
+        <!-- Tailwind CDN for quick build -->
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+
+        <!-- Inter -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+
+    <body class="min-h-screen bg-[#0b1225] flex items-center justify-center px-4 py-10">
+
+        <div class="w-full
+      max-w-[1440px] aspect-[375/677] overflow-y-auto overscroll-contain md:aspect-[1440/900] md:overflow-hidden rounded-xl bg-[#0a1430] shadow-[0_20px_60px_rgba(0,0,0,0.45)] ring-1 ring-white/5">
+
+            <main class="relative overflow-hidden">
+   
+                <!-- interaction section -->
+                <section class="relative mx-auto h-[900px] w-full max-w-[1440px] overflow-hidden text-white">
+                    <!-- Background: radial gradient -->
+                    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,#1C3365_0%,#0C1737_70%,#0C1737_100%)]"></div>
+                    <!-- Background: grid SVG (import file) -->
+                    <img src="./assets/bg/bg-grid.svg" alt="" class="pointer-events-none absolute inset-0 w-full h-full md:w-auto md:h-auto object-cover md:object-fill " />
+                    <!-- Background: texture (import file) -->
+                    <img src="./assets/bg/bg-texture.jpg" alt="" class="pointer-events-none absolute inset-0 h-full w-full opacity-25 mix-blend-overlay" />
+                    <!-- Vignette -->
+                    <div class="pointer-events-none opacity-30 absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.55)_100%,rgba(0,0,0,0.75)_70%)]"></div>
+                    <!-- Content wrapper - main menu ui -->
+                    <div id="mainMenu" class="relative mx-auto flex h-full w-full max-w-[1440px] flex-col px-6 pb-10 pt-14 md:pb-12 md:pt-16">
+                        <!-- Title + copy + button -->
+                        <header id="mainMenuHeader" class="text-center">
+                            <h1 class="mx-auto max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl [font-family:Inter,system-ui,sans-serif]">
+                                Coffee Product Lifecycle
+                            </h1>
+                            <p class="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-white/75 md:mt-5 md:text-base">
+                                Trace the journey of coffee from origin to cup, tracking quality and<br class="hidden md:block" />
+                                traceability data of every stage of production
+                            </p>
+                            <div class="mt-6 flex justify-center">
+                                <button id="startJourneyBtn" type="button" class="cursor-pointer rounded-md bg-[#2D4F9B] px-4 py-1.5 md:px-8 md:py-3  text-base font-medium shadow-[0_18px_60px_rgba(0,0,0,0.35)] hover:bg-[#3560B8] active:translate-y-[1px]">
+                                    Start journey
+                                </button>
+                            </div>
+                        </header>
+                        <!-- Desktop main menu layout -->
+                        <div class="relative mt-0 hidden md:block">
+                            <div id="mainMenuStageDesktop" class="relative mx-auto w-full max-w-[1200px] aspect-[1200/560] main-menu-stage">
+                                <!-- Steps (desktop) -->
+                                <div class="group js-step intro-step absolute left-[20%] top-[5%] w-[clamp(260px,27%,380px)]" style="--delay:80ms">
+                                    <img src="./assets/steps/01-origin.png" alt="01 Origin & Harvest" draggable="false" class="select-none" />
+                                </div>
+                                <div class="group js-step intro-step absolute left-[40%] top-[15%] w-[clamp(260px,27%,380px)]" style="--delay:180ms">
+                                    <img src="./assets/steps/02-processing.png" alt="02 Processing" draggable="false" class="select-none" />
+                                </div>
+                                <div class="group js-step intro-step absolute left-[66%] top-[40%] w-[clamp(260px,27%,380px)]" style="--delay:280ms">
+                                    <img src="./assets/steps/03-export.png" alt="03 Export & Logistics" draggable="false" class="select-none" />
+                                </div>
+                                <div class="group js-step intro-step absolute left-[50%] top-[70%] w-[clamp(260px,27%,380px)]" style="--delay:380ms">
+                                    <img src="./assets/steps/04-roasting.png" alt="04 Roasting" draggable="false" class="select-none" />
+                                </div>
+                                <div class="group js-step intro-step absolute left-[25%] top-[50%] w-[clamp(260px,27%,380px)]" style="--delay:480ms">
+                                    <img src="./assets/steps/05-packaging.png" alt="05 Packaging" draggable="false" class="select-none" />
+                                </div>
+                                <div class="group js-step intro-step absolute left-[1%] top-[30%] w-[clamp(260px,27%,380px)]" style="--delay:580ms">
+                                    <img src="./assets/steps/06-retail.png" alt="06 Retail & Brew" draggable="false" class="select-none" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile main menu (375 x 677) -->
+                        <div class="relative md:hidden">
+                            <div id="mainMenuStageMobile" class="relative mx-auto w-full max-w-[375px] h-[677px] main-menu-stage">
+                                <!-- 01 -->
+                                <div class="group js-step intro-step absolute left-[-10%] top-[4%] w-[65%]" style="--delay:80ms">
+                                    <img src="./assets/steps/01-origin.png" alt="01 Origin & Harvest" draggable="false" class="select-none" />
+                                </div>
+                                <!-- 02 -->
+                                <div class="group js-step intro-step absolute right-[-10%] top-[6%] w-[65%]" style="--delay:180ms">
+                                    <img src="./assets/steps/02-processing.png" alt="02 Processing" draggable="false" class="select-none" />
+                                </div>
+                                <!-- 03 -->
+                                <div class="group js-step intro-step absolute left-[-7%] top-[25%] w-[65%]" style="--delay:280ms">
+                                    <img src="./assets/steps/03-export.png" alt="03 Export & Logistics" draggable="false" class="select-none" />
+                                </div>
+                                <!-- 04 -->
+                                <div class="group js-step intro-step absolute right-[-10%] top-[30%] w-[65%]" style="--delay:380ms">
+                                    <img src="./assets/steps/04-roasting.png" alt="04 Roasting" draggable="false" class="select-none" />
+                                </div>
+                                <!-- 05 -->
+                                <div class="group js-step intro-step absolute left-[-10%] top-[50%] w-[65%]" style="--delay:480ms">
+                                    <img src="./assets/steps/05-packaging.png" alt="05 Packaging" draggable="false" class="select-none" />
+                                </div>
+                                <!-- 06 -->
+                                <div class="group js-step intro-step absolute right-[-10%] top-[60%] w-[65%]" style="--delay:580ms">
+                                    <img src="./assets/steps/06-retail.png" alt="06 Retail & Brew" draggable="false" class="select-none" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- (desktop) content wrapper - steps UI -->
+                    <div id="lifecycleUI-desktop" class="relative hidden md:block">
+                        <!-- top bar -->
+                        <div id="topBar" class="flex items-center justify-between border border-white/10 bg-[linear-gradient(180deg,rgba(20,35,70,0.35),rgba(10,20,45,0.55))] px-5 py-4 backdrop-blur-[14px]">
+                            <!-- Left: title -->
+                            <div class="min-w-0">
+                                <h1 class="text-lg font-semibold text-white/90">
+                                    Coffee Product Lifecycle
+                                </h1>
+                                <p class="mt-1 text-sm text-white/60">
+                                    Explore each stage and view its traceability details
+                                </p>
+                            </div>
+                            <!-- Right: controls -->
+                            <div class="flex items-center gap-3">
+                                <!-- Status pill -->
+                                <div class="select-none rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur" aria-label="6 stages. Traceability enabled" title="6 stages • Traceability enabled">
+                                    <span class="text-white/80 font-medium">6 stages</span>
+                                    <span class="mx-2 text-white/30">•</span>
+                                    <span class="text-white/60">Traceability enabled</span>
+                                </div>
+                                <!-- Exit (only visible in focused mode) -->
+                                <button id="btnExitFlow" type="button" class="exit-btn hidden cursor-pointer rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:text-white transition" aria-label="Exit focus mode" title="Exit focus mode">
+                                    Exit mode
+                                </button>
+                            </div>
+                        </div>
+                        <!-- left panel -->
+                        <aside id="stepsPanel" class="absolute left-6 top-36 z-30 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(20,35,70,0.55),rgba(10,20,45,0.70))] backdrop-blur-[14px] shadow-[0_24px_80px_rgba(0,0,0,0.35)] pointer-events-auto"
+                            data-state="show">
+                            <!-- Steps list -->
+                            <div class="divide-y divide-white/10">
+                                <button class="cursor-pointer step-nav flex w-full justify-between items-center gap-3 px-5 py-3 text-left text-white/65 hover:bg-white/5 hover:text-white transition" data-step="origin">
+                                    <div class="flex gap-3">
+                                        <span class="step-num grid h-7 w-7 place-items-center rounded-full border border-white/25 text-xs text-white/75">01</span>
+                                        <div class="flex min-w-0 flex-col">
+                                            <span class="text-base truncate">Origin &amp; Harvest</span>
+                                            <span class="text-sm text-white/40 truncate">Farm, picking, initial sorting</span>
+                                        </div>
+                                    </div>
+                                    <svg data-step-check class="step-check hidden size-8 text-green-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 10l3 3 7-7" />
+                                    </svg>
+                                </button>
+                                <button class="cursor-pointer step-nav flex w-full justify-between items-center gap-3 px-5 py-3 text-left text-white/65 hover:bg-white/5 hover:text-white transition" data-step="processing">
+                                    <div class="flex gap-3">
+                                        <span class="step-num grid h-7 w-7 place-items-center rounded-full border border-white/25 text-xs text-white/75">02</span>
+                                        <div class="flex min-w-0 flex-col">
+                                            <span class="text-base truncate">Processing</span>
+                                            <span class="text-sm text-white/40 truncate">Wash, dry, grade, prep</span>
+                                        </div>
+                                    </div>
+                                    <svg data-step-check class="step-check hidden size-8 text-green-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 10l3 3 7-7" />
+                                    </svg>
+                                </button>
+                                <button class="cursor-pointer step-nav flex w-full justify-between items-center gap-3 px-5 py-3 text-left text-white/65 hover:bg-white/5 hover:text-white transition" data-step="export">
+                                    <div class="flex gap-3">
+                                        <span class="step-num grid h-7 w-7 place-items-center rounded-full border border-white/25 text-xs text-white/75">03</span>
+                                        <div class="flex min-w-0 flex-col">
+                                            <span class="text-base truncate">Export &amp; Logistics</span>
+                                            <span class="text-sm text-white/40 truncate">Docs, shipping, warehouse</span>
+                                        </div>
+                                    </div>
+                                    <svg data-step-check class="step-check hidden size-8 text-green-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 10l3 3 7-7" />
+                                    </svg>
+                                </button>
+                                <button class="cursor-pointer step-nav flex w-full justify-between items-center gap-3 px-5 py-3 text-left text-white/65 hover:bg-white/5 hover:text-white transition" data-step="roasting">
+                                    <div class="flex gap-3">
+                                        <span class="step-num grid h-7 w-7 place-items-center rounded-full border border-white/25 text-xs text-white/75">04</span>
+                                        <div class="flex min-w-0 flex-col">
+                                            <span class="text-base truncate">Roasting</span>
+                                            <span class="text-sm text-white/40 truncate">Profiles, QC checkpoints</span>
+                                        </div>
+                                    </div>
+                                    <svg data-step-check class="step-check hidden size-8 text-green-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 10l3 3 7-7" />
+                                    </svg>
+                                </button>
+                                <button class="cursor-pointer step-nav flex w-full justify-between items-center gap-3 px-5 py-3 text-left text-white/65 hover:bg-white/5 hover:text-white transition" data-step="packaging">
+                                    <div class="flex gap-3">
+                                        <span class="step-num grid h-7 w-7 place-items-center rounded-full border border-white/25 text-xs text-white/75">05</span>
+                                        <div class="flex min-w-0 flex-col">
+                                            <span class="text-base truncate">Packaging</span>
+                                            <span class="text-sm text-white/40 truncate">Label, seal, trace IDs</span>
+                                        </div>
+                                    </div>
+                                    <svg data-step-check class="step-check hidden size-8 text-green-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 10l3 3 7-7" />
+                                    </svg>
+                                </button>
+                                <button class="cursor-pointer step-nav flex w-full justify-between items-center gap-3 px-5 py-3 text-left text-white/65 hover:bg-white/5 hover:text-white transition" data-step="retail">
+                                    <div class="flex gap-3">
+                                        <span class="step-num grid h-7 w-7 place-items-center rounded-full border border-white/25 text-xs text-white/75">06</span>
+                                        <div class="flex min-w-0 flex-col">
+                                            <span class="text-base truncate">Retail &amp; Brew</span>
+                                            <span class="text-sm text-white/40 truncate">Serve, brew, customer stage</span>
+                                        </div>
+                                    </div>
+                                    <svg data-step-check class="step-check hidden size-8 text-green-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 10l3 3 7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="hidden px-5 py-4 border-t border-white/10 text-xs text-white/50">
+                                Tip: In explore mode, clicking steps only highlights the scene. Use
+                                <span class="text-white/80">Start walkthrough</span> to read details.
+                            </div>
+                        </aside>
+                        <!-- Stage -->
+                        <div id="stage" class="relative mx-auto w-full max-w-[1200px] aspect-[1200/560] overflow-visible" style="--base-x: 8%; --base-y: 10%;">
+                            <div id="stageInner" class="absolute inset-0 origin-top-left will-change-transform">
+                                <svg id="flowLinesSvg" class="absolute inset-0 z-20 h-full w-full pointer-events-none" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg"></svg>
+                                <!-- origin harvest -->
+                                <div class="group step-tile absolute left-[20%] top-[5%] w-[clamp(260px,27%,380px)]" data-step="origin">
+                                    <div class="pointer-events-none absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-4 opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-6">
+                                        <div class="rounded-lg border border-white/10 bg-[rgba(15,25,55,0.85)] px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md shadow-lg whitespace-nowrap">
+                                            Origin &amp; Harvest
+                                        </div>
+                                    </div>
+                                    <img src="./assets/steps/01-origin.png" alt="01 Origin &amp; Harvest" draggable="false" class="select-none cursor-pointer transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:drop-shadow-[0_28px_48px_rgba(120,170,255,0.28)]" />
+                                </div>
+                                <!-- processing -->
+                                <div class="group step-tile absolute left-[40%] top-[15%] w-[clamp(260px,27%,380px)]" data-step="processing">
+                                    <div class="pointer-events-none absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-4 opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-6">
+                                        <div class="rounded-lg border border-white/10 bg-[rgba(15,25,55,0.85)] px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md shadow-lg whitespace-nowrap">
+                                            Processing
+                                        </div>
+                                    </div>
+                                    <img src="./assets/steps/02-processing.png" alt="02 Processing" draggable="false" class="select-none cursor-pointer transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:drop-shadow-[0_28px_48px_rgba(120,170,255,0.28)]" />
+                                </div>
+                                <!-- Export & Logistics -->
+                                <div class="group step-tile absolute left-[66%] top-[40%] w-[clamp(260px,27%,380px)]" data-step="export">
+                                    <div class="pointer-events-none absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-4 opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-6">
+                                        <div class="rounded-lg border border-white/10 bg-[rgba(15,25,55,0.85)] px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md shadow-lg whitespace-nowrap">
+                                            Export &amp; Logistics
+                                        </div>
+                                    </div>
+                                    <img src="./assets/steps/03-export.png" alt="03 Export &amp; Logistics" draggable="false" class="select-none cursor-pointer transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:drop-shadow-[0_28px_48px_rgba(120,170,255,0.28)]" />
+                                </div>
+                                <!-- Roasting -->
+                                <div class="group step-tile absolute left-[50%] top-[70%] w-[clamp(260px,27%,380px)]" data-step="roasting">
+                                    <div class="pointer-events-none absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-4 opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-6">
+                                        <div class="rounded-lg border border-white/10 bg-[rgba(15,25,55,0.85)] px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md shadow-lg whitespace-nowrap">
+                                            Roasting
+                                        </div>
+                                    </div>
+                                    <img src="./assets/steps/04-roasting.png" alt="04 Roasting" draggable="false" class="select-none cursor-pointer transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:drop-shadow-[0_28px_48px_rgba(120,170,255,0.28)]" />
+                                </div>
+                                <!-- packaging -->
+                                <div class="group step-tile absolute left-[25%] top-[50%] w-[clamp(260px,27%,380px)]" data-step="packaging">
+                                    <div class="pointer-events-none absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-4 opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-6">
+                                        <div class="rounded-lg border border-white/10 bg-[rgba(15,25,55,0.85)] px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md shadow-lg whitespace-nowrap">
+                                            Packaging
+                                        </div>
+                                    </div>
+                                    <img src="./assets/steps/05-packaging.png" alt="05 Packaging" draggable="false" class="select-none cursor-pointer transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:drop-shadow-[0_28px_48px_rgba(120,170,255,0.28)]" />
+                                </div>
+                                <!-- retail and brew -->
+                                <div class="group step-tile absolute left-[1%] top-[30%] w-[clamp(260px,27%,380px)]" data-step="retail">
+                                    <div class="pointer-events-none absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-4 opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:-translate-y-6">
+                                        <div class="rounded-lg border border-white/10 bg-[rgba(15,25,55,0.85)] px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md shadow-lg whitespace-nowrap">
+                                            Retail &amp; Brew
+                                        </div>
+                                    </div>
+                                    <img src="./assets/steps/06-retail.png" alt="06 Retail &amp; Brew" draggable="false" class="select-none cursor-pointer transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:drop-shadow-[0_28px_48px_rgba(120,170,255,0.28)]" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- right drawer -->
+                        <aside id="drawer" class="absolute right-10 top-36 z-30 w-[360px] rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(20,35,70,0.60),rgba(10,20,45,0.75))] backdrop-blur-[16px] opacity-0 translate-x-5 pointer-events-none transition duration-300 ease-out"
+                            data-state="hide">
+                            <div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
+                                <h3 id="drawerTitle" class="text-lg font-semibold text-white"></h3>
+                                <div class="flex items-center gap-2">
+                                    <!-- Step chip (moved here) -->
+                                    <div id="topStepChip" class="inline-flex items-center gap-1 rounded-full border border-white/10 bg-black/40 backdrop-blur px-3 py-1.5 text-xs font-medium text-white/80 select-none">
+                                        <span class="text-white/60">Step</span>
+                                        <span id="topStepCurrent" class="text-white/90 tabular-nums">02</span>
+                                        <span class="text-white/40">/</span>
+                                        <span id="topStepTotal" class="text-white/60 tabular-nums">06</span>
+                                    </div>
+                                    <!-- <button id="drawerClose" type="button" class="rounded-lg px-2 py-1 text-white/70 hover:text-white hover:bg-white/5 transition" aria-label="Close panel">
+                                        ✕
+                                    </button> -->
+                                </div>
+                            </div>
+                            <div id="drawerBody" class="px-5 py-4 text-sm leading-relaxed text-white/75"></div>
+                        </aside>
+                    </div>
+
+                    <!-- (mobile) content wrapper - steps UI -->
+                    <div id="lifecycleUI-mobile" class="relative z-50 hidden md:hidden overflow-hidden overflow-x-hidden">
+                        <!-- content wrapper -->
+                        <div class="relative w-full pb-40">
+                            <!-- top bar  -->
+                            <header id="mTopBar" class="border-b border-white/10 bg-[linear-gradient(180deg,rgba(20,35,70,0.55),rgba(10,20,45,0.70))] backdrop-blur-[14px] shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
+                                <div class="px-4 py-4">
+                                    <div class="flex flex-col items-start gap-3">
+                                        <!-- labell -->
+                                        <div class="hidden shrink-0 self-start rounded-xl border border-white/10 bg-white/5 px-2.5 py-1.5 text-[10px] text-white/65" aria-label="6 stages. Traceability enabled" title="6 stages • Traceability enabled">
+                                            <div class="flex items-center gap-1.5">
+                                                <span class="font-medium text-white/75">6 stages</span>
+                                                <span class="h-1 w-1 rounded-full bg-white/30"></span>
+                                                <span class="text-white/55">Trace</span>
+                                            </div>
+                                        </div>
+                                        <!-- title + desc -->
+                                        <div class="flex flex-col">
+                                            <h1 class="text-lg font-semibold text-white/90">
+                                                Coffee Product Lifecycle
+                                            </h1>
+                                            <p class="text-xs leading-relaxed text-white/55">
+                                                Explore each stage and view its traceability details
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </header>
+                            <!-- stage -->
+                            <section id="mStepsPanel" class="mt-5">
+                                <!-- scrollable pills -->
+                                <div id="mPillWrap" class="relative overflow-hidden">
+                                    <div id="mPillScroll" class="z-10 max-w-full overflow-x-auto overflow-y-hidden pb-3 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                                        <div class="flex w-max max-w-full gap-2 ">
+                                            <button class="mStepPill shrink-0 rounded-full border border-white/10 bg-white/10 ml-3 px-3 py-1.5 text-xs text-white/85" data-step="origin">
+                                                01 Origin
+                                            </button>
+                                            <button class="mStepPill shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60" data-step="processing">
+                                                02 Processing
+                                            </button>
+                                            <button class="mStepPill shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60" data-step="export">
+                                                03 Export
+                                            </button>
+                                            <button class="mStepPill shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60" data-step="roasting">
+                                                04 Roasting
+                                            </button>
+                                            <button class="mStepPill shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60" data-step="packaging">
+                                                05 Packaging
+                                            </button>
+                                            <button class="mStepPill shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60" data-step="retail">
+                                                06 Retail
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- fade edges -->
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-[#07122a] to-transparent"></div>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-[#07122a] to-transparent"></div>
+                                </div>
+                                <!-- image area -->
+                                <div id="mImageSwipeZone" class="relative py-4 touch-pan-x overscroll-none select-none">
+                                    <img id="mStepImage" src="./assets/steps/01-origin.png" alt="Step visual" class="h-[250px] w-full select-none object-contain" draggable="false" />
+                                    <!-- Step pill (centered) -->
+                                    <div id="mStepCounter" class="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 inline-flex items-center rounded-full border border-white/10 bg-black/40 backdrop-blur px-3 py-1.5 text-xs font-medium text-white/80">
+                                        Step 01 / 06
+                                    </div>
+                                </div>
+                                <!-- CARD (preview + data panel) -->
+                                <div class="mt-4 px-2 mx-auto">
+                                    <section id="mCard" class="overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(180deg,rgba(20,35,70,0.55),rgba(10,20,45,0.70))] backdrop-blur-[14px] shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
+                                        <!-- card header -->
+                                        <div class="border-b border-white/10 px-4 py-4">
+                                            <div class="flex items-start justify-between gap-3">
+                                                <!-- title desc -->
+                                                <div class="min-w-0">
+                                                    <div id="mStepTitle" class="text-lg font-semibold text-white/95">
+                                                        Origin &amp; Harvest
+                                                    </div>
+                                                    <div id="mStepSubtitle" class="mt-1 text-xs text-white/55">
+                                                        Farm, picking, initial sorting
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- DATA PANEL -->
+                                        <div class="py-6 px-4">
+                                            <div class="grid grid-cols-1 gap-4">
+                                                <!-- Fact 1: What happens -->
+                                                <div class="mFact rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                                                    <div class="text-[11px] text-white/50">What happens</div>
+                                                    <div id="mFactWhatValue" class="mt-1 text-sm font-medium text-white/85">—</div>
+                                                </div>
+                                                <!-- Fact 2: Key specs (label + value dynamic) -->
+                                                <div class="mFact rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                                                    <div id="mFactKeyLabel" class="text-[11px] text-white/50">Key specs</div>
+                                                    <div id="mFactKeyValue" class="mt-1 text-sm font-medium text-white/85">—</div>
+                                                </div>
+                                                <!-- Fact 3: Status -->
+                                                <div class="mFact rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                                                    <div class="text-[11px] text-white/50">Status</div>
+                                                    <div id="mFactStatusValue" class="mt-1 text-sm font-medium text-white/85">—</div>
+                                                </div>
+                                                <!-- button -->
+                                                <!-- VIEW MORE CTA -->
+                                                <div class="mFact px-4 py-3">
+                                                    <button id="mOpenDetails" type="button" class="w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] active:bg-white/15">
+                                                        View full details
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- bottom sheet  -->
+                        <aside id="mDrawer" class="absolute inset-0 z-50 translate-y-[39%] opacity-0 pointer-events-none transition duration-300 ease-out">
+                            <!-- backdrop -->
+                            <!-- <div id="mDrawerBackdrop" class="absolute inset-0 bg-black/70 cursor-pointer"></div> -->
+                            <!-- sheet -->
+                            <div class="relative mx-auto w-full max-w-[420px]">
+                                <div id="mDrawerSheet" class="rounded-t-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(20,35,70,0.75),rgba(10,20,45,0.92))] backdrop-blur-[16px] shadow-[0_-24px_80px_rgba(0,0,0,0.55)] max-h-[85vh] overflow-hidden">
+                                    <!-- handle -->
+                                    <div id="mDrawerGrab" class="flex justify-center pt-3">
+                                        <div class="h-1 w-10 rounded-full bg-white/20"></div>
+                                    </div>
+                                    <!-- header -->
+                                    <div id="mDrawerHeader" class="flex items-center justify-between px-5 pt-3 pb-3">
+                                        <div>
+                                            <div id="mDrawerTitle" class="text-base font-semibold text-white">
+                                                Origin &amp; Harvest
+                                            </div>
+                                            <div id="mDrawerSummary" class="mt-0.5 text-xs text-white/55">
+                                                Harvested and prepared at source.
+                                            </div>
+                                        </div>
+                                        <button id="mDrawerClose" type="button" class="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/80 active:bg-white/10" aria-label="Close panel">
+                                            Close
+                                        </button>
+                                    </div>
+                                    <!-- body -->
+                                    <div id="mDrawerBody" class="px-5 pb-4 overflow-y-auto  overscroll-contain" style="-webkit-overflow-scrolling: touch;">
+                                        <!-- filled by JS -->
+                                    </div>
+                                    <!-- footer actions -->
+                                    <div class="border-t border-white/10 p-5">
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <button id="mBtnPrev" type="button" class="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white/80 active:bg-white/10">
+                                                Previous
+                                            </button>
+                                            <button id="mBtnNext" type="button" class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white active:bg-white/15">
+                                                Next step
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        
+                    </div>
+
+                </section>
+         
+            </main>
+
+        </div>
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+        <script type="module" src="/js/main.js"></script>
+    </body>
+
+</html>

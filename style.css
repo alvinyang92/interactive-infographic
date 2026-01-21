@@ -1,0 +1,240 @@
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+/* main menu css */
+/* default hidden */
+/* .intro-step {
+  opacity: 0;
+} */
+
+
+ #mImageSwipeZone {
+  touch-action: pan-x;
+  overscroll-behavior: none;
+}
+
+/* play animation once when visible */
+.is-visible .intro-step {
+  animation: introPulse 650ms ease-out both;
+  animation-delay: var(--delay);
+}
+
+@keyframes introPulse {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+    filter: drop-shadow(0 0 0 rgba(120, 170, 255, 0));
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+    filter: drop-shadow(0 20px 36px rgba(120, 170, 255, 0.25));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: drop-shadow(0 0 0 rgba(120, 170, 255, 0));
+  }
+}
+
+/* steps ui css */
+#drawer.is-open {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* smoother pill changes */
+.step-num {
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+/* minimal helper so we don’t repeat 10 utility classes */
+.step-nav.is-active {
+  background: rgba(60, 120, 255, 0.15);
+  color: #fff;
+}
+
+/* FIX: your step number is NOT a direct child of .step-nav (it’s inside a div) */
+.step-nav.is-active .step-num {
+  background: rgba(80, 140, 255, 0.9);
+  border-color: transparent;
+  font-weight: 700;
+  color: #0c1737;
+}
+
+/* hover state */
+.step-nav.is-hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.95);
+}
+.step-nav.is-hover span {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ensure active style wins even when hovering the active row */
+.step-nav.is-active.is-hover .step-num {
+  background: rgba(80, 140, 255, 0.9);
+  border-color: transparent;
+  color: #0c1737;
+}
+
+/* Stage camera transform */
+#stageInner {
+  transform: translate3d(
+      calc(var(--tx, 0px) + var(--pan-x, 0px) + var(--base-x, 0px)),
+      calc(var(--ty, 0px) + var(--pan-y, 0px) + var(--base-y, 0px)),
+      0
+    )
+    scale(var(--s, 1));
+  transition: transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#stage.is-dragging #stageInner,
+#stage[data-animating="1"] #stageInner {
+  transition: none;
+}
+
+/* Only dim when walkthrough mode */
+/* #stage[data-mode="walkthrough"].is-focused .step-tile {
+  opacity: 0.28;
+  filter: saturate(0.9);
+  transition: opacity 260ms ease, filter 260ms ease;
+}
+#stage[data-mode="walkthrough"].is-focused .step-tile.is-active {
+  opacity: 1;
+  filter: none;
+} */
+
+/* in focus mode, disable hover styling on all tiles */
+#stage[data-mode="focused"] .step-tile.is-hover img {
+  transform: none !important;
+  filter: none !important;
+}
+
+/* when focused, block hover/tooltips on tiles */
+#stage[data-locked="1"] .step-tile {
+  pointer-events: none;
+}
+
+/* but keep the active tile clickable if you ever need it (optional) */
+#stage[data-locked="1"] .step-tile.is-active {
+  pointer-events: auto;
+}
+
+/* make dim actually obvious (apply to the image) */
+.step-tile.is-dim img {
+  opacity: 0.25;
+  filter: saturate(0.6) brightness(0.75);
+  transform: none !important;
+}
+
+/* keep active step fully visible */
+.step-tile.is-active img {
+  opacity: 1;
+  filter: none;
+}
+
+/* Small extra emphasis for active tile */
+.step-tile.is-active img {
+  transform: translateY(-2px);
+}
+
+/* dim other steps in viewing mode */
+/* .step-tile.is-dim {
+  opacity: 0.25;
+  filter: saturate(0.7) blur(0.2px);
+  transform: none !important;
+} */
+
+
+
+/* Drawer hidden by default */
+.drawer {
+  opacity: 0;
+  transform: translateX(18px);
+  pointer-events: none;
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+#drawer.is-open {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* highlight tile when hovering nav */
+.step-tile.is-hover img {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 28px 48px rgba(120, 170, 255, 0.28));
+}
+
+.step-nav.is-done {
+  background: rgba(90, 160, 255, 0.08);
+}
+
+.step-nav.is-done .step-num {
+  background: rgba(90, 160, 255, 0.25);
+  border-color: rgba(90, 160, 255, 0.45);
+}
+
+.step-nav.is-done .step-index {
+  display: none;
+}
+
+.step-nav.is-done .step-check {
+  display: block;
+}
+
+/* default */
+.exit-btn {
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* focused = exit mode */
+.exit-btn.is-focused {
+  background: rgba(220, 38, 38, 0.15); /* subtle red glass */
+  border-color: rgba(220, 38, 38, 0.45);
+  color: rgb(254, 226, 226);
+}
+
+.exit-btn.is-focused:hover {
+  background: rgba(220, 38, 38, 0.25);
+  border-color: rgba(220, 38, 38, 0.7);
+}
+
+/* Cinematic idle breathing (main menu only) */
+@keyframes stageBreath {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* .main-menu-stage {
+  animation: stageBreath 4.5s ease-in-out infinite;
+  will-change: transform;
+} */
+
+/* Main menu should NOT look clickable */
+.main-menu-stage .step-tile img {
+  cursor: default;
+  transform: none !important;
+  filter: none !important;
+}
+.main-menu-stage {
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.25));
+}
