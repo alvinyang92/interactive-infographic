@@ -4,9 +4,11 @@ export function bindStartJourneyTransition () {
   const hasGSAP = typeof window !== 'undefined' && !!window.gsap
   if (!hasGSAP) return
 
-
   const gsap = window.gsap
 
+  /* =========================================================
+     DOM refs
+     ========================================================= */
   const dom = {
     startBtn: document.getElementById('startJourneyBtn'),
 
@@ -29,9 +31,9 @@ export function bindStartJourneyTransition () {
 
   if (!dom.startBtn || !dom.mainMenu) return
 
-  /* ===========================
+  /* =========================================================
      MENU BREATH (MAIN MENU ONLY)
-     =========================== */
+     ========================================================= */
   function startMenuBreath () {
     // run only when main menu visible
     if (dom.mainMenu.classList.contains('hidden')) return
@@ -52,8 +54,8 @@ export function bindStartJourneyTransition () {
     startBreathSteps({
       root: document,
       selector,
-      amp: isDesktop ? 4 : 5, 
-      baseDur: isDesktop ? 2.4 : 3.6, 
+      amp: isDesktop ? 4 : 5,
+      baseDur: isDesktop ? 2.4 : 3.6,
       stagger: isDesktop ? 0.04 : 0.04
     })
   }
@@ -72,12 +74,18 @@ export function bindStartJourneyTransition () {
     startMenuBreath()
   })
 
+  /* =========================================================
+     Helpers
+     ========================================================= */
   // pick the visible menu stage (desktop vs mobile)
   const getMenuStage = () =>
     window.matchMedia('(min-width: 768px)').matches
       ? dom.menuStageDesktop
       : dom.menuStageMobile
 
+  /* =========================================================
+     Desktop transition
+     ========================================================= */
   function animateToStepsUI () {
     const menuStage = getMenuStage()
 
@@ -205,6 +213,9 @@ export function bindStartJourneyTransition () {
     )
   }
 
+  /* =========================================================
+     Mobile transition
+     ========================================================= */
   function animateToStepsUIMobile () {
     dom.startBtn.disabled = true
     stopMenuBreath() // ✅ stop menu breathing before transition
@@ -318,6 +329,9 @@ export function bindStartJourneyTransition () {
     }
   }
 
+  /* =========================================================
+     Bind click
+     ========================================================= */
   // prevent multiple binding if this gets called twice
   if (dom.startBtn.dataset.bound === '1') return
   dom.startBtn.dataset.bound = '1'

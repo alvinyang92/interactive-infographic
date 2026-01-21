@@ -13,6 +13,9 @@ export function initLifecycleDesktop () {
   // Only run on desktop layout
   if (!window.matchMedia('(min-width: 768px)').matches) return
 
+  /* =========================================================
+     Breath sync (explore vs focused)
+     ========================================================= */
   function syncBreathByMode () {
     if (isFocused()) {
       stopBreathSteps({ reset: true })
@@ -22,6 +25,9 @@ export function initLifecycleDesktop () {
     startBreathSteps({ selector: '#stageInner .step-tile img', amp: 4 })
   }
 
+  /* =========================================================
+     DOM refs
+     ========================================================= */
   const dom = {
     stage: document.getElementById('stage'),
     stageInner: document.getElementById('stageInner'),
@@ -55,15 +61,37 @@ export function initLifecycleDesktop () {
   )
     return
 
+  /* =========================================================
+     State
+     ========================================================= */
   const state = {
     mode: 'explore', // 'explore' | 'focused'
     activeStepKey: null,
     focusedPose: null,
     basePose: null
   }
+
   const hasGSAP = typeof window !== 'undefined' && !!window.gsap
 
-  // ---------- camera helpers ----------
+  /* =========================================================
+     Stage mode helpers
+     ========================================================= */
+  function syncStageMode () {
+    dom.stage.dataset.mode = state.mode
+  }
+
+  function isFocused () {
+    return state.mode === 'focused'
+  }
+
+  function syncInteractionLock () {
+    // when focused: disable pointer events on tiles so no hover tooltip / lift
+    dom.stage.dataset.locked = isFocused() ? '1' : '0'
+  }
+
+  /* =========================================================
+     Camera helpers
+     ========================================================= */
   function setCameraVars (vars) {
     if (!vars) return
     if (vars.s != null) dom.stageInner.style.setProperty('--s', String(vars.s))
@@ -131,21 +159,9 @@ export function initLifecycleDesktop () {
     dom.stageInner.style.setProperty('--ty', pose.ty)
   }
 
-  function syncInteractionLock () {
-    // when focused: disable pointer events on tiles so no hover tooltip / lift
-    dom.stage.dataset.locked = isFocused() ? '1' : '0'
-  }
-
-  // ---------- stage mode ----------
-  function syncStageMode () {
-    dom.stage.dataset.mode = state.mode
-  }
-
-  function isFocused () {
-    return state.mode === 'focused'
-  }
-
-  // ---------- steps panel transitions ----------
+  /* =========================================================
+     Steps panel transitions
+     ========================================================= */
   function showStepsPanel () {
     if (!dom.stepsPanel) return
 
@@ -186,7 +202,9 @@ export function initLifecycleDesktop () {
     })
   }
 
-  // ---------- drawer transitions ----------
+  /* =========================================================
+     Drawer transitions
+     ========================================================= */
   function hideDrawerOnly () {
     if (!hasGSAP) {
       dom.drawer.classList.remove(
@@ -236,7 +254,9 @@ export function initLifecycleDesktop () {
     )
   }
 
-  // ---------- top pagination chip ----------
+  /* =========================================================
+     Top pagination chip
+     ========================================================= */
   function setStepChipLabel () {
     if (!dom.topStepChip) return
 
@@ -253,6 +273,7 @@ export function initLifecycleDesktop () {
       0,
       STEP_ORDER.indexOf(state.activeStepKey || STEP_ORDER[0])
     )
+
     if (dom.topStepCurrent)
       dom.topStepCurrent.textContent = String(idx + 1).padStart(2, '0')
     if (dom.topStepTotal)
@@ -264,7 +285,9 @@ export function initLifecycleDesktop () {
     if (dom.topStepTotal) dom.topStepTotal.classList.remove('hidden')
   }
 
-  // Optional: repurpose top CTA (if you want)
+  /* =========================================================
+     Top CTA
+     ========================================================= */
   function syncTopCta () {
     if (!dom.btnExitFlow) return
 
@@ -283,7 +306,9 @@ export function initLifecycleDesktop () {
     dom.btnExitFlow.classList.add('is-focused') // your red style hook
   }
 
-  // ---------- focus target positioning ----------
+  /* =========================================================
+     Focus target positioning
+     ========================================================= */
   function getFocusTargetPoint (tileRect, zoom) {
     const stageRect = dom.stage.getBoundingClientRect()
     const rightRect = dom.drawer ? dom.drawer.getBoundingClientRect() : null
@@ -315,6 +340,9 @@ export function initLifecycleDesktop () {
     return { x: targetX, y: targetY }
   }
 
+  /* =========================================================
+     Explore highlighting
+     ========================================================= */
   function applyExploreHighlight (activeKey) {
     dom.tiles.forEach(t =>
       t.classList.toggle('is-active', t.dataset.step === activeKey)
@@ -324,7 +352,9 @@ export function initLifecycleDesktop () {
     )
   }
 
-  // ---------- render drawer (focused mode only) ----------
+  /* =========================================================
+     Render drawer (focused mode only)
+     ========================================================= */
   function renderDrawer (stepKey) {
     const d = STEP_DATA[stepKey]
     if (!d) return
@@ -367,7 +397,9 @@ export function initLifecycleDesktop () {
     }
   }
 
-  // ---------- open step ----------
+  /* =========================================================
+     Open step
+     ========================================================= */
   function openStep (stepKey, { mode } = {}) {
     const tile = dom.tiles.find(t => t.dataset.step === stepKey)
     if (!tile) return
@@ -433,7 +465,9 @@ export function initLifecycleDesktop () {
     })
   }
 
-  // ---------- base pose ----------
+  /* =========================================================
+     Base pose
+     ========================================================= */
   function resetToBasePosition () {
     const stageRect = dom.stage.getBoundingClientRect()
     const baseX = getComputedStyle(dom.stage)
@@ -478,7 +512,9 @@ export function initLifecycleDesktop () {
     state.basePose = getPose()
   }
 
-  // ---------- focused enter/exit ----------
+  /* =========================================================
+     Focus enter / exit
+     ========================================================= */
   function enterFocused (stepKey) {
     stopBreathSteps({ reset: true }) // ✅ kill breathing immediately
 
@@ -522,7 +558,9 @@ export function initLifecycleDesktop () {
     openStep(STEP_ORDER[nextIdx], { mode: 'focused' })
   }
 
-  // ---------- hover ----------
+  /* =========================================================
+     Hover
+     ========================================================= */
   function setHoverStep (stepKey) {
     if (isFocused()) return
     dom.tiles.forEach(t =>
@@ -538,7 +576,9 @@ export function initLifecycleDesktop () {
     dom.navBtns.forEach(b => b.classList.remove('is-hover'))
   }
 
-  // ---------- events ----------
+  /* =========================================================
+     Events
+     ========================================================= */
   dom.navBtns.forEach(btn => {
     btn.addEventListener('mouseenter', () => setHoverStep(btn.dataset.step))
     btn.addEventListener('mouseleave', clearHoverStep)
@@ -642,13 +682,16 @@ export function initLifecycleDesktop () {
     exitFocused()
   })
 
-  // ---------- init ----------
+  /* =========================================================
+     Init
+     ========================================================= */
   syncStageMode()
   syncTopCta()
   setStepChipLabel()
 
   hideDrawerOnly()
   // showStepsPanel()
+
   const skipIntro =
     document.getElementById('lifecycleUI-desktop')?.dataset?.skipIntro === '1'
 

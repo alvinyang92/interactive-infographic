@@ -1,4 +1,3 @@
-// js/lifecycle-mobile.js
 import { STEP_ORDER, STEP_DATA } from './data/steps-data.js'
 import { escapeHtml } from './utils/escapeHtml.js'
 
@@ -13,6 +12,9 @@ export function initLifecycleMobile () {
   if (root.dataset.initedMobile === '1') return
   root.dataset.initedMobile = '1'
 
+  /* =========================================================
+     DOM refs
+     ========================================================= */
   const dom = {
     root,
 
@@ -59,14 +61,17 @@ export function initLifecycleMobile () {
   // Guard: markup not present
   if (dom.stepPills.length === 0 || !dom.stepTitle || !dom.stepImage) return
 
+  /* =========================================================
+     State
+     ========================================================= */
   const state = {
     mode: 'explore', // explore | walkthrough
     activeStepKey: getFirstStepKey()
   }
 
-  // -------------------------
-  // Helpers
-  // -------------------------
+  /* =========================================================
+     Helpers
+     ========================================================= */
   function getFirstStepKey () {
     const fromPill = dom.stepPills[0]?.dataset?.step
     if (fromPill && STEP_DATA[fromPill]) return fromPill
@@ -149,9 +154,9 @@ export function initLifecycleMobile () {
     dom.exploreHint.classList.toggle('hidden', !visible)
   }
 
-  // -------------------------
-  // 2 facts strategy
-  // -------------------------
+  /* =========================================================
+     2 facts strategy
+     ========================================================= */
   function pickSubtitle (d) {
     // summary is best for mobile
     if (d.summary) return d.summary
@@ -187,9 +192,9 @@ export function initLifecycleMobile () {
     return { whatValue, keyValue, statusValue }
   }
 
-  // -------------------------
-  // Render
-  // -------------------------
+  /* =========================================================
+     Render
+     ========================================================= */
   function preloadImg (src) {
     return new Promise(resolve => {
       if (!src) return resolve(false)
@@ -303,9 +308,9 @@ export function initLifecycleMobile () {
     }
   }
 
-  // -------------------------
-  // Drawer controls
-  // -------------------------
+  /* =========================================================
+     Drawer controls
+     ========================================================= */
   function lockBodyScroll () {
     document.body.classList.add('overflow-hidden', 'touch-none')
   }
@@ -328,6 +333,7 @@ export function initLifecycleMobile () {
       'opacity-100',
       'pointer-events-auto'
     )
+
     if (dom.drawerSheet) {
       dom.drawerSheet.style.transition = ''
       dom.drawerSheet.style.transform = 'translateY(0px)'
@@ -337,6 +343,7 @@ export function initLifecycleMobile () {
   function drawerClose () {
     if (!dom.drawer) return
     unlockBodyScroll()
+
     dom.drawer.classList.add(
       'translate-y-full',
       'opacity-0',
@@ -367,9 +374,9 @@ export function initLifecycleMobile () {
     setExploreHintVisible(true)
   }
 
-  // -------------------------
-  // Main action
-  // -------------------------
+  /* =========================================================
+     Main action
+     ========================================================= */
   function openStep (stepKey, { keepDrawer = false } = {}) {
     const key = clampKey(stepKey)
     state.activeStepKey = key
@@ -395,6 +402,7 @@ export function initLifecycleMobile () {
   function animateToStep (nextKey, dir, { keepDrawer = false } = {}) {
     const zone = dom.imageSwipeZone || dom.stepImage
     const img = dom.stepImage
+
     if (!nextKey || !img || !zone) {
       openStep(nextKey, { keepDrawer })
       return
@@ -454,6 +462,9 @@ export function initLifecycleMobile () {
     img.addEventListener('transitionend', onOutEnd)
   }
 
+  /* =========================================================
+     Swipe: image
+     ========================================================= */
   function bindImageSwipe () {
     const zone = dom.imageSwipeZone || dom.stepImage
     const img = dom.stepImage
@@ -670,6 +681,9 @@ export function initLifecycleMobile () {
     )
   }
 
+  /* =========================================================
+     Swipe: drawer
+     ========================================================= */
   function bindDrawerSwipe () {
     const sheet = dom.drawerSheet
     const grab = dom.drawerGrab
@@ -809,9 +823,9 @@ export function initLifecycleMobile () {
     )
   }
 
-  // -------------------------
-  // Events
-  // -------------------------
+  /* =========================================================
+     Events
+     ========================================================= */
   dom.stepPills.forEach(pill => {
     pill.addEventListener('click', e => {
       e.preventDefault()
@@ -898,9 +912,9 @@ export function initLifecycleMobile () {
     })
   }
 
-  // -------------------------
-  // Init
-  // -------------------------
+  /* =========================================================
+     Init
+     ========================================================= */
   bindImageSwipe()
   bindDrawerSwipe()
 
