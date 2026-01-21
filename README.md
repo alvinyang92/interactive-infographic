@@ -11,10 +11,9 @@ The infographic is designed to work as a self-contained section that can be embe
 ## Tech Stack
 
 - HTML  
-- CSS  
-- Vanilla JavaScript  
-- Web Components (Custom Elements)  
-- CSS & JavaScript-based animations  
+- TailwindCSS  
+- Vanilla JavaScript (ES Modules)  
+- GSAP animations  
 
 No frontend framework is used to keep the setup simple and portable.
 
@@ -52,15 +51,16 @@ No frontend framework is used to keep the setup simple and portable.
 ### Option 2: Hosted Demo
 
 A live demo is hosted on Netlify:  
-👉 [Netlify Demo URL]
+👉 [https://frontend-interactive-infographic.netlify.app/]
 
 ---
 
 ## Features Implemented
 
 - **Interactive Infographic Asset**
-  - Built as a self-contained component that can be embedded into any webpage.
-  - All interactions happen within the asset itself.
+  - Implemented as a custom Web Component.
+  - Fully self-contained (HTML, CSS, and JavaScript encapsulated).
+  - Designed to be easily embedded into any webpage without external dependencies.
 
 - **Dynamic Visuals**
   - Smooth transitions between sections.
@@ -78,23 +78,23 @@ A live demo is hosted on Netlify:
   - Layout adapts smoothly across screen sizes.
 
 - **Code Structure**
-  - Logic organised into reusable components.
-  - Styles scoped to avoid conflicts when embedded.
-  - Easy to extend for other infographic topics.
+  - Web Component structure used to encapsulate markup, styles, and behavior.
+  - Clear separation between layout, interaction logic, and animation logic.
+  - Scoped styles to prevent conflicts when embedded into existing websites.
 
 ---
 
 ## Design & Implementation Notes
 
 - The infographic was designed as an embeddable asset instead of a full webpage.
-- Web Components were used to keep markup, styling, and behaviour encapsulated.
+- The interactive asset is implemented using a Web Component (Custom Element) to ensure encapsulation and reusability.
 - Interactions are kept simple and clear to prioritise usability and performance.
 
 ---
 
 ## Assumptions & Limitations
 
-- This project focuses on frontend interactivity only. No backend or API integration.
+- This project focuses purely on frontend interactivity using Web Components. No backend or API integration is included.
 - Content is static and for demonstration purposes.
 - Animations are kept lightweight for better mobile performance.
 - Targeted at modern browsers (Chrome, Edge, Safari, Firefox).
@@ -104,6 +104,6 @@ A live demo is hosted on Netlify:
 
 ## Notes
 
-- The project is intentionally framework-free for portability and reusability.
-- The structure allows easy extension or conversion into reusable components.
-- Additional enhancements (e.g. THREE.js) can be added without changing the core structure.
+- The project intentionally avoids frontend frameworks to keep the interactive asset lightweight and portable.
+- The Web Component approach allows the infographic to be reused across different projects or pages with minimal setup.
+- Additional enhancements (such as THREE.js) can be integrated without refactoring the existing structure.
