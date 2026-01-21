@@ -13,10 +13,10 @@ export function startBreathSteps ({
 
   const gsap = window.gsap
 
-  // ✅ stop previous run FIRST (before re-select)
+  // stop previous run FIRST (before re-select)
   stopBreathSteps({ reset: false })
 
-  // ✅ now select fresh elements
+  // now select fresh elements
   _breathEls = Array.from(root.querySelectorAll(selector))
   if (!_breathEls.length) return
 

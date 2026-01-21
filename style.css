@@ -8,30 +8,6 @@ body {
   overscroll-behavior: none;
 }
 
-/* play animation once when visible */
-.is-visible .intro-step {
-  animation: introPulse 650ms ease-out both;
-  animation-delay: var(--delay);
-}
-
-/* @keyframes introPulse {
-  0% {
-    opacity: 0;
-    transform: translateY(0);
-    filter: drop-shadow(0 0 0 rgba(120, 170, 255, 0));
-  }
-  40% {
-    opacity: 1;
-    transform: translateY(-2px);
-    filter: drop-shadow(0 20px 36px rgba(120, 170, 255, 0.25));
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: drop-shadow(0 0 0 rgba(120, 170, 255, 0));
-  }
-} */
-
 /* steps ui css */
 #drawer.is-open {
   opacity: 1;
@@ -52,7 +28,7 @@ body {
 }
 
 .step-nav.is-active .step-num {
-  background: rgba(80, 140, 255, 0.9);
+  background: #508cffe6;
   border-color: transparent;
   font-weight: 700;
   color: #0c1737;
@@ -60,17 +36,17 @@ body {
 
 /* hover state */
 .step-nav.is-hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.95);
+  background: #ffffff0d;
+  color: #ffff;
 }
 .step-nav.is-hover span {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.95);
+  border-color: #ffffff80;
+  color: #ffff;
 }
 
 /* ensure active style wins even when hovering the active row */
 .step-nav.is-active.is-hover .step-num {
-  background: rgba(80, 140, 255, 0.9);
+  background: #508cffe6;
   border-color: transparent;
   color: #0c1737;
 }
@@ -91,16 +67,6 @@ body {
   transition: none;
 }
 
-/* Only dim when walkthrough mode */
-/* #stage[data-mode="walkthrough"].is-focused .step-tile {
-  opacity: 0.28;
-  filter: saturate(0.9);
-  transition: opacity 260ms ease, filter 260ms ease;
-}
-#stage[data-mode="walkthrough"].is-focused .step-tile.is-active {
-  opacity: 1;
-  filter: none;
-} */
 
 /* in focus mode, disable hover styling on all tiles */
 #stage[data-mode='focused'] .step-tile.is-hover img {
@@ -136,13 +102,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* dim other steps in viewing mode */
-/* .step-tile.is-dim {
-  opacity: 0.25;
-  filter: saturate(0.7) blur(0.2px);
-  transform: none !important;
-} */
-
 /* Drawer hidden by default */
 .drawer {
   opacity: 0;
@@ -160,16 +119,16 @@ body {
 /* highlight tile when hovering nav */
 .step-tile.is-hover img {
   transform: translateY(-4px);
-  filter: drop-shadow(0 28px 48px rgba(120, 170, 255, 0.28));
+  filter: drop-shadow(0 28px 48px #78aaff47);
 }
 
 .step-nav.is-done {
-  background: rgba(90, 160, 255, 0.08);
+  background: #5aa0ff14;
 }
 
 .step-nav.is-done .step-num {
-  background: rgba(90, 160, 255, 0.25);
-  border-color: rgba(90, 160, 255, 0.45);
+  background: #5aa0ff40;
+  border-color: #5aa0ff73;
 }
 
 .step-nav.is-done .step-index {
@@ -188,14 +147,14 @@ body {
 
 /* focused = exit mode */
 .exit-btn.is-focused {
-  background: rgba(220, 38, 38, 0.15); /* subtle red glass */
-  border-color: rgba(220, 38, 38, 0.45);
-  color: rgb(254, 226, 226);
+  background: #dc262626; /* subtle red glass */
+  border-color: #dc262673;
+  color: #fee2e2;
 }
 
 .exit-btn.is-focused:hover {
-  background: rgba(220, 38, 38, 0.25);
-  border-color: rgba(220, 38, 38, 0.7);
+  background: #dc262640;
+  border-color: #dc2626b3;
 }
 
 /* Cinematic idle breathing (main menu only) */
@@ -218,5 +177,5 @@ body {
   filter: none !important;
 }
 .main-menu-stage {
-  filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 40px 80px #00000040);
 }

@@ -23,7 +23,7 @@ export function bindStartJourneyTransition () {
     stepsPanel: document.getElementById('stepsPanel'),
     stageInner: document.getElementById('stageInner'),
 
-    // ✅ mobile lifecycle
+    // mobile lifecycle
     lifecycleMobile: document.getElementById('lifecycleUI-mobile'),
     mobileTopBar: document.getElementById('mTopBar'),
     mobileCard: document.getElementById('mCard')
@@ -64,10 +64,10 @@ export function bindStartJourneyTransition () {
     stopBreathSteps({ reset: true })
   }
 
-  // ✅ start immediately
+  // start immediately
   startMenuBreath()
 
-  // ✅ only one resize handler
+  // only one resize handler
   window.addEventListener('resize', () => {
     // if menu is hidden (already in steps UI), don't restart
     if (dom.mainMenu.classList.contains('hidden')) return
@@ -90,7 +90,7 @@ export function bindStartJourneyTransition () {
     const menuStage = getMenuStage()
 
     dom.startBtn.disabled = true
-    stopMenuBreath() // ✅ stop menu breathing before transition
+    stopMenuBreath() // stop menu breathing before transition
 
     // 1) Show steps container
     dom.lifecycleDesktop.classList.remove('hidden')
@@ -103,7 +103,7 @@ export function bindStartJourneyTransition () {
       if (stage) stage.dataset.animating = '0'
     })
 
-    // 2) Prep initial states (reduced distance = smoother)
+    // 2) Prep initial states 
     if (dom.topBar) gsap.set(dom.topBar, { autoAlpha: 0, y: -16 })
     if (dom.stepsPanel) gsap.set(dom.stepsPanel, { autoAlpha: 0, x: -12 })
 
@@ -203,7 +203,7 @@ export function bindStartJourneyTransition () {
       )
     }
 
-    // ✅ start breathing ONLY after everything is visible (Explore mode default)
+    // start breathing ONLY after everything is visible (Explore mode default)
     tl.call(
       () => {
         startBreathSteps({ selector: '#stageInner .step-tile img', amp: 4 })
@@ -218,7 +218,7 @@ export function bindStartJourneyTransition () {
      ========================================================= */
   function animateToStepsUIMobile () {
     dom.startBtn.disabled = true
-    stopMenuBreath() // ✅ stop menu breathing before transition
+    stopMenuBreath() // stop menu breathing before transition
 
     const menuStage = dom.menuStageMobile
 

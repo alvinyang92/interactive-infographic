@@ -219,7 +219,7 @@ export function initLifecycleMobile () {
     if (d.img) dom.stepImage.src = d.img
     dom.stepImage.alt = d.title
 
-    // ✅ step counter (Step 02 / 06)
+    // step counter (Step 02 / 06)
     if (dom.stepCounter) {
       const current = idxOf(key) + 1
       const total = STEP_ORDER.length
@@ -227,7 +227,7 @@ export function initLifecycleMobile () {
       dom.stepCounter.textContent = `Step ${pad2(current)} / ${pad2(total)}`
     }
 
-    // ✅ unified 3-facts mapping
+    // unified 3-facts mapping
     const facts = pickThreeFacts(key, d)
 
     // 1) What happens
@@ -423,16 +423,16 @@ export function initLifecycleMobile () {
     img.style.opacity = '0'
 
     const onOutEnd = async e => {
-      // ✅ only react to ONE property, so we don't fire too early
+      // only react to ONE property, so we don't fire too early
       if (e && e.propertyName !== 'transform') return
       img.removeEventListener('transitionend', onOutEnd)
 
-      // ✅ preload next image first (prevents flashing old frame)
+      // preload next image first (prevents flashing old frame)
       const nextData = STEP_DATA[clampKey(nextKey)]
       const nextSrc = nextData?.img
       await preloadImg(nextSrc)
 
-      // ✅ update content while hidden
+      // update content while hidden
       openStep(nextKey, { keepDrawer })
 
       // jump to opposite side (instant)
@@ -846,7 +846,7 @@ export function initLifecycleMobile () {
         return
       }
 
-      // ✅ same swipe animation as next/prev + keep drawer if currently open
+      // same swipe animation as next/prev + keep drawer if currently open
       animateToStep(nextKey, dir, { keepDrawer: state.mode === 'walkthrough' })
     })
   })
@@ -861,7 +861,7 @@ export function initLifecycleMobile () {
   //   })
   // }
 
-  // ✅ ONLY button opens drawer
+  // ONLY button opens drawer
   if (dom.openDetails) {
     dom.openDetails.addEventListener('click', e => {
       e.preventDefault()

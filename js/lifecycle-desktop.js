@@ -2,7 +2,7 @@ import { STEP_ORDER, STEP_DATA } from './data/steps-data.js'
 import { renderDrawerHtml } from './ui/render-drawer.js'
 import { startBreathSteps, stopBreathSteps } from './transition/breath-steps.js'
 
-// ✅ Per-step camera tweaks (px are screen pixels BEFORE divide by zoom)
+// Per-step camera tweaks (px are screen pixels BEFORE divide by zoom)
 const STEP_CAMERA_TWEAKS = {
   processing: { dx: -120, dy: 0, zoom: 1.38 }, // start here, tweak dx
   export: { dx: -210, dy: 0, zoom: 1.38 },
@@ -14,7 +14,7 @@ export function initLifecycleDesktop () {
   if (!window.matchMedia('(min-width: 768px)').matches) return
 
   /* =========================================================
-     Breath sync (explore vs focused)
+     Breath sync 
      ========================================================= */
   function syncBreathByMode () {
     if (isFocused()) {
@@ -315,7 +315,7 @@ export function initLifecycleDesktop () {
 
     const pad = 32
 
-    // In focused mode your steps panel is hidden, so safeLeft can be stage left.
+    // In focused mode steps panel is hidden, so safeLeft can be stage left.
     const safeLeft = stageRect.left + pad
 
     // If drawer exists, don't let the target land under it
@@ -388,7 +388,7 @@ export function initLifecycleDesktop () {
         const isLast = idx >= STEP_ORDER.length - 1
 
         if (isLast) {
-          exitFocused() // ✅ this is your "Complete" action
+          exitFocused() 
           return
         }
 
@@ -431,7 +431,7 @@ export function initLifecycleDesktop () {
     hideStepsPanel()
 
     requestAnimationFrame(() => {
-      // 🔧 per-step tweak (optional)
+      //  per-step tweak (optional)
       const tweak = STEP_CAMERA_TWEAKS[stepKey] || {}
       const zoom = tweak.zoom || 1.38
 
@@ -443,7 +443,7 @@ export function initLifecycleDesktop () {
       let dx = (target.x - center.x) / zoom
       let dy = (target.y - center.y) / zoom
 
-      // 🔧 apply per-step offset AFTER base calculation
+      // apply per-step offset AFTER base calculation
       if (typeof tweak.dx === 'number') dx += tweak.dx / zoom
       if (typeof tweak.dy === 'number') dy += tweak.dy / zoom
 
@@ -512,11 +512,12 @@ export function initLifecycleDesktop () {
     state.basePose = getPose()
   }
 
+  
   /* =========================================================
      Focus enter / exit
      ========================================================= */
   function enterFocused (stepKey) {
-    stopBreathSteps({ reset: true }) // ✅ kill breathing immediately
+    stopBreathSteps({ reset: true }) // kill breathing immediately
 
     state.mode = 'focused'
     syncStageMode()
@@ -547,7 +548,7 @@ export function initLifecycleDesktop () {
     // keep highlight on last selected step
     if (state.activeStepKey) applyExploreHighlight(state.activeStepKey)
 
-    syncBreathByMode() // ✅ resume breathing
+    syncBreathByMode() // resume breathing
   }
 
   function goToStepByOffset (offset) {
